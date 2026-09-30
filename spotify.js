@@ -18,7 +18,7 @@ async function updateSpotify() {
     if (data.albumArt) {
       albumArt.src = data.albumArt;
       vinylCover.src = data.albumArt;
-    }
+    } 
     if (data.songUrl) spotifyLink.href = data.songUrl;
   } catch {
     vinyl.classList.remove('playing');
