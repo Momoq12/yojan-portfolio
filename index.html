@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#070809" />
+  <meta name="description" content="Yojan — computer science student at IIMS College and Python developer." />
+  <title>Yojan-CS Student & Python Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="extras.css" />
+  <link rel="stylesheet" href="music.css" />
+  <style>.contact-note{max-width:620px;margin-top:48px;font-size:clamp(1.05rem,1.8vw,1.35rem);line-height:1.6}</style>
+  <style>.image-ring{overflow:hidden;background:#000;border-color:rgba(245,197,24,.34);box-shadow:0 0 90px rgba(245,197,24,.1)}.hero-emblem{width:88%;height:88%;object-fit:contain;display:block;filter:contrast(1.04);transform:scale(1);transition:filter .35s,transform .6s}.image-ring:hover .hero-emblem{transform:scale(1.025)}body.day .image-ring{background:#000;border-color:rgba(23,25,26,.25);box-shadow:0 0 90px rgba(245,197,24,.2)}body.day .hero-emblem{filter:contrast(1.04)}</style>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 32'%3E%3Cpath fill='%23f6c90e' d='M2 3l12 7 7-8 11 9L43 2l7 8 12-7-5 14-10 4-6 9-9-6-9 6-6-9-10-4z'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Back to top">
+      <span class="bat-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 32" role="img"><path d="M2 3l12 7 7-8 11 9L43 2l7 8 12-7-5 14-10 4-6 9-9-6-9 6-6-9-10-4z"/></svg>
+      </span>
+      <span>YOJAN</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#about">About</a><a href="#work">Work</a><a href="#journey">Journey</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-switch" id="theme-switch" type="button" aria-label="Switch to day theme" aria-pressed="false">
+        <span class="switch-track"><span class="switch-bat"><svg viewBox="0 0 64 32" aria-hidden="true"><path d="M2 3l12 7 7-8 11 9L43 2l7 8 12-7-5 14-10 4-6 9-9-6-9 6-6-9-10-4z"/></svg></span></span>
+        <span class="switch-label">Night</span>
+      </button>
+      <a class="availability" href="#contact"><span></span> Available for work</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="skyline" aria-hidden="true"></div>
+      <div class="hero-copy reveal">
+        <p class="eyebrow">CS Student · Python Developer · Problem solver</p>
+        <h1>Learning deeply.<br><em>Building boldly.</em></h1>
+        <p class="intro">I’m Yojan, a computer science student at IIMS College. I use Python to turn ideas into useful, working software.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#work">View selected work</a>
+          <a class="text-link" href="#about">More about me <span>↓</span></a>
+        </div>
+      </div>
+      <div class="signal spotify-signal">
+        <div class="signal-ring vinyl-stage">
+          <div class="vinyl" id="vinyl" aria-hidden="true"><span class="vinyl-label"><img id="vinyl-cover" alt="" /></span><i></i></div>
+        </div>
+        <a class="now-playing" id="spotify-link" href="https://open.spotify.com" target="_blank" rel="noreferrer" aria-label="Open Spotify">
+          <img id="album-art" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%23070809'/%3E%3Ccircle cx='60' cy='60' r='46' fill='none' stroke='%23f6c90e' stroke-width='3'/%3E%3Ccircle cx='60' cy='60' r='8' fill='%23f6c90e'/%3E%3Cpath d='M26 60h25M69 60h25' stroke='%23f6c90e' stroke-width='2' opacity='.55'/%3E%3C/svg%3E" alt="Spotify album artwork" />
+          <span><small id="playback-status">Spotify connection pending</small><strong id="track-name">Nothing playing</strong><em id="artist-name">YOJAN ON SPOTIFY</em></span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7 9.5c3.4-1 7.1-.7 10.1 1M7.8 13c2.8-.8 5.9-.6 8.4.8M8.7 16.1c2-.5 4.2-.4 6 .6"/></svg>
+        </a>
+      </div>
+      <div class="time-panel" aria-label="Current date and time in Nepal">
+        <p class="time-zone">Kathmandu · NPT</p>
+        <strong id="nepal-time">--:--:--</strong>
+        <div><span id="ad-date">Loading AD date</span><span id="bs-date">Loading BS date</span></div>
+      </div>
+      <div class="chapter"><span>01</span><i></i><span>INTRODUCTION</span></div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="section-label"><span>02</span><p>ABOUT</p></div>
+      <div class="section-body reveal">
+        <p class="eyebrow">Behind the mask</p>
+        <h2>Quiet focus.<br>Loud results.</h2>
+        <div class="split-copy">
+          <p>I’m studying BCS at IIMS College, building a strong foundation in software and problem-solving.</p>
+          <p>Python is my stack and my craft. I use it to explore automation, data, and backend ideas while sharpening how I think as a developer.</p>
+        </div>
+        <div class="stats">
+          <div><strong>BCS</strong><span>Computer science</span></div>
+          <div><strong>01</strong><span>Focused stack</span></div>
+          <div><strong>∞</strong><span>Curiosity</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section work" id="work">
+      <div class="section-label"><span>03</span><p>SELECTED WORK</p></div>
+      <div class="section-body">
+        <div class="work-heading reveal"><div><p class="eyebrow">Case files</p><h2>What I explore.</h2></div><p>One language, many ways to learn, solve problems, and build.</p></div>
+        <div class="project-list">
+          <article class="project reveal"><span class="project-no">01</span><div><p>Python · Automation</p><h3>Making repetitive work<br>disappear.</h3></div><span class="project-year">NOW</span><span class="project-arrow">↗</span></article>
+          <article class="project reveal"><span class="project-no">02</span><div><p>Python · Data</p><h3>Finding meaning<br>inside the numbers.</h3></div><span class="project-year">NOW</span><span class="project-arrow">↗</span></article>
+          <article class="project reveal"><span class="project-no">03</span><div><p>Python · Experiments</p><h3>Small ideas,<br>built seriously.</h3></div><span class="project-year">NOW</span><span class="project-arrow">↗</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section journey" id="journey">
+      <div class="section-label"><span>04</span><p>JOURNEY</p></div>
+      <div class="section-body reveal">
+        <p class="eyebrow">The timeline</p><h2>Always learning.<br>Always building.</h2>
+        <div class="timeline">
+          <div class="timeline-row"><time>NOW</time><span></span><div><h3>Computer Science Student</h3><p>Studying for a bachelor’s degree at IIMS College.</p></div></div>
+          <div class="timeline-row"><time>IIMS</time><span></span><div><h3>Building the foundation</h3><p>Learning the principles behind software, systems, and computation.</p></div></div>
+          <div class="timeline-row"><time>PY</time><span></span><div><h3>Learning through Python</h3><p>Turning lessons into working programs, one line at a time.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact-inner reveal">
+        <p class="eyebrow">Light the signal</p>
+        <h2>Let’s learn, build,<br><em>and solve.</em></h2>
+        <p class="contact-note">Open to collaborations, student projects, and opportunities to grow.</p>
+        <div class="contact-options">
+          <a class="contact-card" href="https://www.instagram.com/yojannnz" target="_blank" rel="noreferrer">
+            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" class="fill-dot"/></svg></span>
+            <span><small>Instagram</small><strong>@yojannnz</strong></span><b>↗</b>
+          </a>
+          <a class="contact-card" href="https://github.com/Momoq12" target="_blank" rel="noreferrer">
+            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7.4A5.8 5.8 0 0 0 19.3 3 5.4 5.4 0 0 0 19.1 0S17.9-.4 15 1.5a13.4 13.4 0 0 0-6 0C6.1-.4 4.9 0 4.9 0a5.4 5.4 0 0 0-.2 3A5.8 5.8 0 0 0 3.2 7.1c0 5.8 3.5 7 6.8 7.4a4.8 4.8 0 0 0-1 3.5v4"/><path d="M9 18c-3 .9-3-1.5-4.2-2"/></svg></span>
+            <span><small>GitHub</small><strong>@Momoq12</strong></span><b>↗</b>
+          </a>
+        </div>
+      </div>
+      <footer><div class="brand"><span class="bat-mark"><svg viewBox="0 0 64 32"><path d="M2 3l12 7 7-8 11 9L43 2l7 8 12-7-5 14-10 4-6 9-9-6-9 6-6-9-10-4z"/></svg></span><span>YOJAN</span></div><p>© 2026 · Yojan Bhattarai</p><a href="#home">Back to top ↑</a></footer>
+    </section>
+  </main>
+  <script src="script.js"></script>
+  <script src="spotify.js"></script>
+</body>
+</html>
