@@ -101,7 +101,8 @@ function updateLiveAge() {
   const minutes = Math.floor(remainingSeconds / 60);
   const seconds = remainingSeconds % 60;
 
-  liveAge.textContent = `${years} years · ${months} months · ${days} days · ${hours}h ${minutes}m ${seconds}s old`;
+  const unit = (value, label) => `${value} ${label}${value === 1 ? '' : 's'}`;
+  liveAge.textContent = `${unit(years, 'year')} · ${unit(months, 'month')} · ${unit(days, 'day')} · ${hours}h ${minutes}m ${seconds}s old`;
 }
 
 updateLiveAge();
