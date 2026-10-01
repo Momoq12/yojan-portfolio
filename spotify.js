@@ -7,6 +7,7 @@ const trackName = document.querySelector('#track-name');
 const artistName = document.querySelector('#artist-name');
 
 async function updateSpotify() {
+  if (!vinyl || !spotifyLink || !albumArt || !vinylCover || !playbackStatus || !trackName || !artistName) return;
   try {
     const response = await fetch('/api/now-playing', { cache: 'no-store' });
     if (!response.ok) throw new Error('Spotify is not connected');

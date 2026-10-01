@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080909"><meta name="robots" content="noindex,nofollow">
+  <title>Project Desk · Yojan</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="admin.css"><link rel="stylesheet" href="admin-files.css"><link rel="stylesheet" href="admin-fix.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 32'%3E%3Cpath fill='%23f6c90e' d='M2 3l12 7 7-8 11 9L43 2l7 8 12-7-5 14-10 4-6 9-9-6-9 6-6-9-10-4z'/%3E%3C/svg%3E">
+</head><body>
+  <div class="noise"></div>
+  <section class="login" id="login-panel" hidden><form class="login-card" id="login-form"><span class="bat">◆</span><p class="eyebrow">Restricted access</p><h1>Project Desk</h1><p>Sign in to update the work shown on your portfolio.</p><label>Password<input id="password" type="password" autocomplete="current-password" required></label><button>Unlock dashboard</button><p class="message" id="login-message"></p></form></section>
+  <div class="app" id="app" hidden>
+    <aside><a class="brand" href="/"><span>◆</span> YOJAN</a><nav><button class="active" data-view="projects"><span>01</span>Projects</button><button data-view="html"><span>02</span>Site HTML</button><button data-view="files"><span>03</span>All Files</button><a href="/#work" target="_blank"><span>↗</span>View website</a></nav><div class="aside-foot"><p>Portfolio manager</p><button class="quiet" id="logout">Lock dashboard</button></div></aside>
+    <main><div id="projects-view"><header><div><p class="eyebrow">Selected work</p><h1>Projects</h1></div><button class="primary" id="new-project">Add project</button></header>
+      <section class="summary"><div><strong id="project-count">0</strong><span>Projects</span></div><p>Add work here and it will appear in the Work section of your portfolio after deployment.</p></section>
+      <section class="workspace"><div class="project-panel"><div class="panel-head"><h2>Your projects</h2><span id="save-state">All changes saved</span></div><div class="project-items" id="project-items"></div><div class="empty" id="empty"><span>＋</span><h3>No projects yet</h3><p>Add your first project to replace the sample cards on your website.</p></div></div>
+        <form class="editor" id="project-form"><div class="panel-head"><div><p class="eyebrow">Project details</p><h2 id="form-title">New project</h2></div><button type="button" class="icon-button" id="close-editor" aria-label="Close editor">×</button></div>
+          <input id="project-id" type="hidden"><label>Project image<div class="dropzone" id="dropzone"><input id="image" type="file" accept="image/jpeg,image/png,image/webp"><img id="image-preview" alt=""><div id="drop-copy"><span>＋</span><strong>Choose an image</strong><small>JPG, PNG or WebP · up to 3 MB</small></div></div></label>
+          <div class="two"><label>Project title<input id="title" maxlength="100" placeholder="Website change tracker" required></label><label>Year<input id="year" maxlength="20" placeholder="2026"></label></div><label>Category<input id="category" maxlength="80" placeholder="Python · Automation" required></label>
+          <label>Description<textarea id="description" maxlength="500" rows="4" placeholder="What the project does and why you built it."></textarea></label><div class="two"><label>Live project URL<input id="live-url" type="url" placeholder="https://..."></label><label>GitHub URL<input id="github-url" type="url" placeholder="https://github.com/..."></label></div>
+          <label class="switch-row"><span><strong>Show on website</strong><small>Hide a draft without deleting it.</small></span><input id="published" type="checkbox" checked><i></i></label><div class="form-actions"><button type="button" class="danger" id="delete-project" hidden>Delete</button><button class="primary" id="save-project">Save project</button></div><p class="message" id="form-message"></p>
+        </form></section></div>
+      <section id="html-view" class="html-view" hidden>
+        <header><div><p class="eyebrow">Advanced editor</p><h1>Site HTML</h1></div><a class="primary button-link" href="/" target="_blank">Open website</a></header>
+        <div class="editor-note"><strong>Edit the visible website markup</strong><p>This controls everything inside the site’s <code>&lt;main&gt;</code> element. Navigation, styles, scripts, and this dashboard remain protected.</p></div>
+        <div class="html-toolbar"><span id="html-state">Loading current HTML…</span><div><button class="danger" id="restore-html">Restore deployed HTML</button><button class="quiet bordered" id="preview-html">Preview</button><button class="primary" id="save-html">Publish HTML</button></div></div>
+        <textarea id="html-source" class="code-editor" spellcheck="false" aria-label="Site HTML source"></textarea>
+        <div class="preview-panel" id="preview-panel" hidden><div class="panel-head"><h2>Preview</h2><button class="icon-button" id="close-preview" aria-label="Close preview">×</button></div><iframe id="html-preview" title="Website HTML preview" sandbox="allow-same-origin"></iframe></div>
+        <p class="message html-message" id="html-message"></p>
+      </section>
+      <section id="files-view" class="files-view" hidden>
+        <header><div><p class="eyebrow">Repository editor</p><h1>All Files</h1></div><button class="primary" id="new-file">New file</button></header>
+        <div class="editor-note"><strong>Edit the website folder safely</strong><p>Saves are committed to GitHub. Secret, system, binary, and files larger than 1 MB are protected.</p></div>
+        <div class="file-workspace">
+          <section class="file-sidebar"><div class="file-sidebar-head"><input id="file-search" type="search" placeholder="Search files" aria-label="Search files"><button class="icon-button" id="refresh-files" aria-label="Refresh files">↻</button></div><div id="file-list" class="file-list"></div></section>
+          <section class="file-editor-panel"><div class="file-empty" id="file-empty"><span>⌁</span><h2>Choose a file</h2><p>Select an editable text file from the folder.</p></div><div id="file-editor" hidden>
+            <div class="file-editor-head"><div><p class="eyebrow" id="file-mode">Editing</p><h2 id="file-path-label"></h2></div><div><button class="quiet bordered" id="rename-file">Rename</button><button class="danger" id="delete-file">Delete</button></div></div>
+            <textarea id="file-source" class="code-editor file-source" spellcheck="false" aria-label="File contents"></textarea>
+            <div class="commit-bar"><label>Save note<input id="commit-message" maxlength="120" value="Update website files from dashboard"></label><button class="primary" id="save-file">Save to GitHub</button></div><p class="message" id="file-message"></p>
+          </div></section>
+        </div>
+      </section>
+    </main>
+  </div><script src="admin.js"></script>
+</body></html>

@@ -19,11 +19,12 @@ const sectionObserver = new IntersectionObserver((entries) => {
 sections.forEach((section) => sectionObserver.observe(section));
 
 const themeSwitch = document.querySelector('#theme-switch');
-const themeLabel = themeSwitch.querySelector('.switch-label');
+const themeLabel = themeSwitch?.querySelector('.switch-label');
 const savedTheme = localStorage.getItem('yojan-theme');
 if (savedTheme === 'day') document.body.classList.add('day');
 
 function syncThemeControl() {
+  if (!themeSwitch || !themeLabel) return;
   const isDay = document.body.classList.contains('day');
   themeSwitch.setAttribute('aria-pressed', String(isDay));
   themeSwitch.setAttribute('aria-label', `Switch to ${isDay ? 'night' : 'day'} theme`);
@@ -31,12 +32,46 @@ function syncThemeControl() {
   document.querySelector('meta[name="theme-color"]').content = isDay ? '#d8d5cc' : '#070809';
 }
 
-themeSwitch.addEventListener('click', () => {
+themeSwitch?.addEventListener('click', () => {
   document.body.classList.toggle('day');
   localStorage.setItem('yojan-theme', document.body.classList.contains('day') ? 'day' : 'night');
   syncThemeControl();
 });
 syncThemeControl();
+
+const projectList = document.querySelector('#project-list');
+
+function projectMarkup(project, index) {
+  const escapeText = (value) => String(value || '').replace(/[&<>"']/g, (character) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+  })[character]);
+  const destination = project.liveUrl || project.githubUrl || '';
+  const tag = destination ? 'a' : 'article';
+  const linkAttributes = destination ? ` href="${escapeText(destination)}" target="_blank" rel="noreferrer"` : '';
+  const image = project.imageUrl
+    ? `<span class="project-image"><img src="${escapeText(project.imageUrl)}" alt="" loading="lazy"></span>`
+    : '<span class="project-image project-image-empty" aria-hidden="true"></span>';
+  return `<${tag} class="project reveal visible"${linkAttributes}>
+    <span class="project-no">${String(index + 1).padStart(2, '0')}</span>
+    <div><p>${escapeText(project.category)}</p><h3>${escapeText(project.title)}</h3>${project.description ? `<span class="project-description">${escapeText(project.description)}</span>` : ''}</div>
+    ${image}<span class="project-year">${escapeText(project.year || 'NOW')}</span><span class="project-arrow">${destination ? '↗' : ''}</span>
+  </${tag}>`;
+}
+
+async function loadProjects() {
+  if (!projectList) return;
+  try {
+    const response = await fetch('/api/projects');
+    if (!response.ok) return;
+    const payload = await response.json();
+    const visibleProjects = (payload.projects || []).filter((project) => project.published !== false);
+    if (visibleProjects.length) projectList.innerHTML = visibleProjects.map(projectMarkup).join('');
+  } catch (_) {
+    // Keep the hand-authored project cards if cloud content is unavailable.
+  }
+}
+
+loadProjects();
 
 const nepalTime = document.querySelector('#nepal-time');
 const adDate = document.querySelector('#ad-date');
@@ -57,6 +92,7 @@ function bsDateFor2083(kathmanduDate) {
 }
 
 function updateNepalClock() {
+  if (!nepalTime || !adDate || !bsDate) return;
   const now = new Date();
   nepalTime.textContent = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kathmandu', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(now);
   adDate.textContent = `${new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kathmandu', day: '2-digit', month: 'short', year: 'numeric' }).format(now)} AD`;
