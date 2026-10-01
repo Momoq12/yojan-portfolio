@@ -73,6 +73,40 @@ async function loadProjects() {
 
 loadProjects();
 
+const liveAge = document.querySelector('#live-age');
+const birthNpt = { year: 2008, month: 7, day: 22, hour: 11, minute: 0, second: 0 };
+const nptOffsetMs = (5 * 60 + 45) * 60 * 1000;
+
+function nptDate(year, month) {
+  return new Date(Date.UTC(year, month, birthNpt.day, birthNpt.hour, birthNpt.minute, birthNpt.second) - nptOffsetMs);
+}
+
+function updateLiveAge() {
+  if (!liveAge) return;
+  const now = new Date();
+  const nowNpt = new Date(now.getTime() + nptOffsetMs);
+  let years = nowNpt.getUTCFullYear() - birthNpt.year;
+  let cursor = nptDate(birthNpt.year + years, birthNpt.month);
+  if (cursor > now) cursor = nptDate(birthNpt.year + --years, birthNpt.month);
+
+  let months = 0;
+  while (months < 11 && nptDate(birthNpt.year + years, birthNpt.month + months + 1) <= now) months += 1;
+  cursor = nptDate(birthNpt.year + years, birthNpt.month + months);
+
+  let remainingSeconds = Math.floor((now - cursor) / 1000);
+  const days = Math.floor(remainingSeconds / 86400);
+  remainingSeconds %= 86400;
+  const hours = Math.floor(remainingSeconds / 3600);
+  remainingSeconds %= 3600;
+  const minutes = Math.floor(remainingSeconds / 60);
+  const seconds = remainingSeconds % 60;
+
+  liveAge.textContent = `${years} years · ${months} months · ${days} days · ${hours}h ${minutes}m ${seconds}s old`;
+}
+
+updateLiveAge();
+setInterval(updateLiveAge, 1000);
+
 const nepalTime = document.querySelector('#nepal-time');
 const adDate = document.querySelector('#ad-date');
 const bsDate = document.querySelector('#bs-date');
